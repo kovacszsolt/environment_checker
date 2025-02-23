@@ -22,10 +22,10 @@ jobs:
 
       - name: Tag image
         run: |
-          docker tag baseimage:${GITHUB_REF##*/} ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}__${{github.run_number}}
+          docker tag baseimage:${GITHUB_REF##*/} ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}-${{github.run_number}}
           docker tag baseimage:${GITHUB_REF##*/} ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}
 
       - name: Push Docker Image
         run: |
-          docker push ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}__${{github.run_number}}
+          docker push ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}-${{github.run_number}}
           docker push ${{ vars.DOCKER_REGISTRY_HOSTNAME }}/${{ vars.IMAGE_NAME }}:${GITHUB_REF##*/}
